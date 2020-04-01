@@ -420,9 +420,10 @@ samba_db_log() {
 # rbkmoney gentoo specific
 script() {
 	verbose "# Run arbitrary scripts"
-	verbose "# Portage repos"
-	run "rm -rf /var/lib/layman/*"
-	run "rm -rf /usr/portage"
+	verbose "# Clear /usr/portage (output truncated)"
+	run "rm -rf /usr/portage && mkdir -p /usr/portage " | head -10
+	verbose "# Clear /var/lib/layman/* (output truncated)"
+	run "rm -rf /var/lib/layman && mkdir -p /var/lib/layman" | head -10
 	verbose
 	verbose "# Hostname"
 	run "rm -f /etc/conf.d/hostname"
