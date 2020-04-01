@@ -72,8 +72,6 @@ main() {
 	dhcp_server_state
 	dovecot_data
 	firewall_rules
-	flag_reconfiguration
-	fs_uuids
 	kerberos_data
 	logfiles
 	lvm_uuids
@@ -92,11 +90,11 @@ main() {
 	script
 	smolt_uuid
 	ssh_hostkeys
-	ssh_userdir
+	# ssh_userdir
 	sssd_db_log
 	tmp_files
 	udev_persistent_net
-	user_account
+	# user_account
 	utmp
 	yum_uuid
 }
@@ -419,10 +417,24 @@ samba_db_log() {
 	verbose
 }
 
-# Todo
+# rbkmoney gentoo specific
 script() {
 	verbose "# Run arbitrary scripts"
-	run
+	verbose "# Portage repos"
+	run "rm -rf /var/lib/layman/*"
+	run "rm -rf /usr/portage"
+	verbose
+	verbose "# Hostname"
+	run "rm -f /etc/conf.d/hostname"
+	verbose
+	verbose "# Filebeat conf"
+	run "rm -f /etc/filebeat/filebeat.yml"
+	verbose
+	verbose "# Salt minion_id"
+	run "rm -f /etc/salt/minion_id"
+	verbose
+	verbose "# Network configuration"
+	run "rm -f /etc/conf.d/net"
 	verbose
 }
 
