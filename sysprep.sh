@@ -72,8 +72,6 @@ main() {
 	dhcp_server_state
 	dovecot_data
 	firewall_rules
-	flag_reconfiguration
-	fs_uuids
 	kerberos_data
 	logfiles
 	lvm_uuids
@@ -92,11 +90,11 @@ main() {
 	script
 	smolt_uuid
 	ssh_hostkeys
-	ssh_userdir
+	# ssh_userdir
 	sssd_db_log
 	tmp_files
 	udev_persistent_net
-	user_account
+	# user_account
 	utmp
 	yum_uuid
 }
@@ -419,10 +417,32 @@ samba_db_log() {
 	verbose
 }
 
-# Todo
+# rbkmoney gentoo specific
 script() {
 	verbose "# Run arbitrary scripts"
-	run
+	verbose "# Clear /usr/portage (output truncated)"
+	run "rm -rf /usr/portage" | head -10
+	run "mkdir -p /usr/portage"
+	verbose
+	verbose "# Clear /var/lib/layman/* (output truncated)"
+	run "rm -rf /var/lib/layman" | head -10
+	run "mkdir -p /var/lib/layman"
+	verbose
+	verbose "# Hostname"
+	run "rm -f /etc/conf.d/hostname"
+	verbose
+	verbose "# Filebeat conf"
+	run "rm -f /etc/filebeat/filebeat.yml"
+	verbose
+	verbose "# Salt minion_id"
+	run "rm -f /etc/salt/minion_id"
+	verbose
+	verbose "# Network configuration"
+	run "rm -f /etc/conf.d/net"
+	verbose
+	verbose "# Clear misc caches"
+	run "rm -rf /var/cache/eix"
+	run "rm -rf /var/cache/salt"
 	verbose
 }
 
