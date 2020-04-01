@@ -423,6 +423,7 @@ script() {
 	verbose "# Clear /usr/portage (output truncated)"
 	run "rm -rf /usr/portage" | head -10
 	run "mkdir -p /usr/portage"
+	verbose
 	verbose "# Clear /var/lib/layman/* (output truncated)"
 	run "rm -rf /var/lib/layman" | head -10
 	run "mkdir -p /var/lib/layman"
@@ -438,6 +439,10 @@ script() {
 	verbose
 	verbose "# Network configuration"
 	run "rm -f /etc/conf.d/net"
+	verbose
+	verbose "# Clear misc caches"
+	run "rm -rf /var/cache/eix"
+	run "rm -rf /var/cache/salt"
 	verbose
 }
 
