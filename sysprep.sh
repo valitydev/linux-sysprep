@@ -1,6 +1,9 @@
 #!/bin/sh
 # sysprep.sh - Prepare linux system for use as template
 
+# DISCLAIMER
+# This fork is roughly adapted for usage with gentoo in RBKmoney environment
+
 usage() {
 	echo "Usage: $0 [OPTION]"
 	echo "Prepare linux system for use as template."
