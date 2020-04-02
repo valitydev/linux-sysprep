@@ -441,8 +441,8 @@ script() {
 	run "rm -f /etc/conf.d/net"
 	verbose
 	verbose "# Clear misc caches"
-	run "rm -rf /var/cache/eix"
-	run "rm -rf /var/cache/salt"
+	run "rm -rf /var/cache/eix/*"
+	run "rm -rf /var/cache/salt/*"
 	verbose
 }
 
