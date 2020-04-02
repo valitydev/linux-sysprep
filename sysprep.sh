@@ -437,8 +437,9 @@ script() {
 	verbose "# Filebeat conf"
 	run "rm -f /etc/filebeat/filebeat.yml"
 	verbose
-	verbose "# Salt minion_id"
+	verbose "# Salt minion stuff"
 	run "rm -f /etc/salt/minion_id"
+	run "rm -f /etc/salt/pki/minion/minion_master.pub"
 	verbose
 	verbose "# Network configuration"
 	run "rm -f /etc/conf.d/net"
