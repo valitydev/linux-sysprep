@@ -478,6 +478,7 @@ tmp_files() {
 	verbose "# Remove temporary files"
 	run "rm -rf /tmp/*"
 	run "rm -rf /var/tmp/*"
+	run "mkdir -p /var/tmp/{distfiles,portage}; chown portage:portage /var/tmp/portage; chown root:portage /var/tmp/distfiles " # or portage will make fool of you
 	verbose
 }
 
