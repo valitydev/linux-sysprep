@@ -425,9 +425,11 @@ script() {
 	verbose "# Run arbitrary scripts"
 	verbose "# Clear /usr/portage (output truncated)"
 	run "rm -rf /usr/portage/*" | head -10
+	run "rm -rf /usr/portage/.*" >/dev/null
 	verbose
 	verbose "# Clear /var/lib/layman/* (output truncated)"
 	run "rm -rf /var/lib/layman/*" | head -10
+	run "rm -rf /var/lib/layman/.*" >/dev/null
 	verbose
 	verbose "# Hostname"
 	run "rm -f /etc/conf.d/hostname"
