@@ -425,12 +425,10 @@ samba_db_log() {
 script() {
 	verbose "# Run arbitrary scripts"
 	verbose "# Clear /usr/portage (output truncated)"
-	run "rm -rf /usr/portage" | head -10
-	run "mkdir -p /usr/portage"
+	run "rm -rf /usr/portage/*" | head -10
 	verbose
 	verbose "# Clear /var/lib/layman/* (output truncated)"
-	run "rm -rf /var/lib/layman" | head -10
-	run "mkdir -p /var/lib/layman"
+	run "rm -rf /var/lib/layman/*" | head -10
 	verbose
 	verbose "# Hostname"
 	run "rm -f /etc/conf.d/hostname"
@@ -440,13 +438,12 @@ script() {
 	verbose
 	verbose "# Salt minion stuff"
 	run "rm -f /etc/salt/minion_id"
-	run "rm -f /etc/salt/pki/minion/minion_master.pub"
+	run "rm -rf /etc/salt/pki/"
 	verbose
 	verbose "# Network configuration"
 	run "rm -f /etc/conf.d/net"
 	verbose
-	verbose "# Clear misc caches"
-	run "rm -rf /var/cache/eix/*"
+	verbose "# Clear Salt cache"
 	run "rm -rf /var/cache/salt/*"
 	verbose
 }
