@@ -478,7 +478,7 @@ sssd_db_log() {
 tmp_files() {
 	verbose "# Remove temporary files"
 	run "rm -rf /tmp/*"
-	run "rm -rf /var/tmp/!(distfiles,portage)" # do not remove both!
+	run "rm -rf /var/tmp/!(distfiles|portage)" # do not remove both!
 	run "rm -rf /var/tmp/distfiles/*"
 	run "rm -rf /var/tmp/portage/*"
 	verbose
