@@ -100,7 +100,6 @@ main() {
 	# user_account
 	utmp
 	yum_uuid
-	relabel
 }
 
 abrt_data() {
@@ -507,12 +506,6 @@ utmp() {
 yum_uuid() {
 	verbose "# Remove the yum UUID"
 	run "rm -f /var/lib/yum/uuid"
-	verbose
-}
-
-relabel() {
-	verbose "# Relabel"
-	run "rlpkg -ar"
 	verbose
 }
 
