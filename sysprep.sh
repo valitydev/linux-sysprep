@@ -54,7 +54,7 @@ parse_args() {
 				usage
 				exit 1
 				;;
-		esac    
+		esac
 	done
 }
 
@@ -100,6 +100,7 @@ main() {
 	# user_account
 	utmp
 	yum_uuid
+	relabel
 }
 
 abrt_data() {
@@ -377,9 +378,9 @@ package_manager_cache() {
 
 pam_data() {
 	verbose "# Remove the PAM data"
-	run "rm -f /var/run/console/*" 
-	run "rm -f /var/run/faillock/*" 
-	run "rm -f /var/run/sepermit/*" 
+	run "rm -f /var/run/console/*"
+	run "rm -f /var/run/faillock/*"
+	run "rm -f /var/run/sepermit/*"
 	verbose
 }
 
@@ -508,6 +509,12 @@ utmp() {
 yum_uuid() {
 	verbose "# Remove the yum UUID"
 	run "rm -f /var/lib/yum/uuid"
+	verbose
+}
+
+relabel() {
+	verbose "# Relabel"
+	run "rlpkg -ar"
 	verbose
 }
 
