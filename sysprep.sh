@@ -422,7 +422,6 @@ samba_db_log() {
 
 # rbkmoney gentoo specific
 script() {
-	verbose "# Run arbitrary scripts"
 	verbose "# Clear /usr/portage (output truncated)"
 	run "rm -rf /usr/portage/*" | head -10
 	run "rm -rf /usr/portage/.*" >/dev/null
@@ -437,14 +436,12 @@ script() {
 	verbose "# Filebeat conf"
 	run "rm -f /etc/filebeat/filebeat.yml"
 	verbose
-	verbose "# Salt minion stuff"
-	run "rm -f /etc/salt/minion_id"
-	run "rm -rf /etc/salt/pki/"
-	verbose
 	verbose "# Network configuration"
 	run "rm -f /etc/conf.d/net"
 	verbose
-	verbose "# Clear Salt cache"
+	verbose "# Remove Salt minion_id, PKI, cache"
+	run "rm -f /etc/salt/minion_id"
+	run "rm -rf /etc/salt/pki/"
 	run "rm -rf /var/cache/salt/*"
 	verbose
 }
